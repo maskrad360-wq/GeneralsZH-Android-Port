@@ -268,15 +268,15 @@ public class SetupActivity extends Activity {
 
         LinearLayout shell = new LinearLayout(this);
         shell.setOrientation(LinearLayout.VERTICAL);
-        shell.setBackgroundColor(UiKit.color(this, R.color.gzh_background));
+        shell.setBackgroundResource(R.drawable.gzh_launcher_background);
         setContentView(shell);
         // Edge-to-edge still handled the same way: pad the outermost view by
         // the system bars/cutout so the app bar clears the status bar and the
         // navigation bar below clears the gesture handle.
         InsetUtil.applySafeInsets(shell);
 
-        appBarTitle = UiKit.appBar(shell, getString(R.string.setup_title),
-            getString(R.string.nav_tab_home),
+        appBarTitle = UiKit.appBar(shell, "COMMAND & CONQUER // ZERO HOUR",
+            "WARU EDITION • " + getString(R.string.nav_tab_home),
             R.drawable.ic_gzh_doc, getString(R.string.setup_button_view_logs), this::onViewLogs);
 
         contentHost = new FrameLayout(this);
@@ -360,7 +360,7 @@ public class SetupActivity extends Activity {
         clearPageReferences();
         contentHost.removeAllViews();
         if (appBarTitle != null) {
-            appBarTitle.setText(tabTitle(tab));
+            appBarTitle.setText("WARU EDITION • " + getString(tabTitle(tab)));
         }
 
         LinearLayout page = UiKit.scrollingPage(contentHost);
@@ -420,6 +420,7 @@ public class SetupActivity extends Activity {
     // ------------------------------------------------------------ Home page
 
     private void buildHomeSection(LinearLayout page) {
+        UiKit.brandBanner(page);
         // The one thing this app exists to do, as the first thing on it.
         UiKit.button(page, UiKit.BTN_PRIMARY, R.drawable.ic_gzh_play,
             getString(R.string.setup_button_launch_game), this::onLaunchGame);
