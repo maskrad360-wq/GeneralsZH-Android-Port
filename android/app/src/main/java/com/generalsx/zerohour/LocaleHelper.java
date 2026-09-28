@@ -50,7 +50,7 @@ final class LocaleHelper {
 
     // GeneralsX @feature Android port 13/07/2026 Keep this in the same order
     // shown in the Setup UI's language picker.
-    static final String[] SUPPORTED_TAGS = { "", "en", "ru", "de", "uk", "es", "zh", "fr", "ko", "pl", "pt-BR", "isv", "ar", "fa" };
+    static final String[] SUPPORTED_TAGS = { "", "en", "ru", "de", "uk", "es", "zh", "fr", "ko", "pl", "pt-BR", "isv", "ar", "fa", "uz" };
 
     private LocaleHelper() {}
 
@@ -192,6 +192,7 @@ final class LocaleHelper {
             case "isv": return "Medžuslovjansky";
             case "ar": return "العربية";
             case "fa": return "فارسی";
+            case "uz": return "O‘zbekcha";
             default:   return tag;
         }
     }
