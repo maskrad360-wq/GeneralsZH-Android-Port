@@ -124,6 +124,64 @@ final class UiKit {
      * an optional icon button pinned to the end edge. Returns the title view,
      * which the caller retitles as the user moves between sections.
      */
+    /** Compact military identity panel used at the top of the Home page. */
+    static void brandBanner(LinearLayout parent) {
+        Context c = parent.getContext();
+        MaterialCardView card = new MaterialCardView(c);
+        card.setRadius(dp(c, 12));
+        card.setCardElevation(0f);
+        card.setCardBackgroundColor(color(c, R.color.gzh_surface_container));
+        card.setStrokeWidth(Math.max(1, dp(c, 1)));
+        card.setStrokeColor(color(c, R.color.gzh_primary));
+        card.setUseCompatPadding(false);
+
+        LinearLayout body = new LinearLayout(c);
+        body.setOrientation(LinearLayout.VERTICAL);
+        body.setPadding(dp(c, 18), dp(c, 15), dp(c, 18), dp(c, 15));
+
+        TextView title = new TextView(c);
+        title.setText("GENERALS ZH");
+        title.setTextSize(TypedValue.COMPLEX_UNIT_SP, 23f);
+        title.setTextColor(color(c, R.color.gzh_on_surface));
+        title.setTypeface(Typeface.DEFAULT_BOLD);
+        title.setLetterSpacing(0.08f);
+        body.addView(title);
+
+        TextView edition = new TextView(c);
+        edition.setText("WARU EDITION  //  FIELD COMMAND");
+        edition.setTextSize(TypedValue.COMPLEX_UNIT_SP, 11f);
+        edition.setTextColor(color(c, R.color.gzh_primary));
+        edition.setTypeface(Typeface.DEFAULT_BOLD);
+        edition.setLetterSpacing(0.12f);
+        LinearLayout.LayoutParams elp = new LinearLayout.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        elp.topMargin = dp(c, 4);
+        body.addView(edition, elp);
+
+        View rule = new View(c);
+        rule.setBackgroundColor(color(c, R.color.gzh_outline_variant));
+        LinearLayout.LayoutParams rlp = new LinearLayout.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT, Math.max(1, dp(c, 1)));
+        rlp.topMargin = dp(c, 11);
+        rlp.bottomMargin = dp(c, 9);
+        body.addView(rule, rlp);
+
+        TextView hint = new TextView(c);
+        hint.setText("TACTICAL LAUNCH CONTROL");
+        hint.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10f);
+        hint.setTextColor(color(c, R.color.gzh_on_surface_faint));
+        hint.setTypeface(Typeface.DEFAULT_BOLD);
+        hint.setLetterSpacing(0.14f);
+        body.addView(hint);
+
+        card.addView(body, new ViewGroup.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        lp.bottomMargin = dim(c, R.dimen.gzh_card_gap);
+        parent.addView(card, lp);
+    }
+
     static TextView appBar(ViewGroup parent, CharSequence overline, CharSequence title,
                            int trailingIconRes, CharSequence trailingDescription,
                            Runnable trailingAction) {
@@ -203,7 +261,8 @@ final class UiKit {
         card.setRadius(dim(c, R.dimen.gzh_radius_card));
         card.setCardElevation(0f);
         card.setCardBackgroundColor(color(c, R.color.gzh_surface_container));
-        card.setStrokeWidth(0);
+        card.setStrokeWidth(Math.max(1, dp(c, 1)));
+        card.setStrokeColor(color(c, R.color.gzh_outline_variant));
         card.setUseCompatPadding(false);
         card.setPreventCornerOverlap(false);
 
@@ -349,7 +408,7 @@ final class UiKit {
         b.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15f);
         b.setTypeface(Typeface.DEFAULT_BOLD);
         b.setLetterSpacing(0f);
-        b.setCornerRadius(dp(c, 26));
+        b.setCornerRadius(dp(c, 8));
         b.setInsetTop(0);
         b.setInsetBottom(0);
         b.setMinHeight(dim(c, R.dimen.gzh_button_height));
@@ -592,6 +651,7 @@ final class UiKit {
         bg.setShape(GradientDrawable.RECTANGLE);
         bg.setCornerRadius(dim(c, R.dimen.gzh_radius_row));
         bg.setColor(color(c, R.color.gzh_surface_container_high));
+        bg.setStroke(Math.max(1, dp(c, 1)), color(c, R.color.gzh_outline_variant));
         row.setBackground(bg);
         if (onClick != null) {
             row.setClickable(true);
